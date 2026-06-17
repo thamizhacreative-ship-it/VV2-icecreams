@@ -1,0 +1,683 @@
+/* ============================================
+   VV2 — Premium interface layer
+   ============================================ */
+
+:root {
+  --gold:        #C4A052;
+  --gold-light:  #E8D5A3;
+  --champagne:   #F7F2E8;
+  --surface:     #FFFFFF;
+  --border:      rgba(28, 18, 9, 0.08);
+  --border-strong: rgba(28, 18, 9, 0.12);
+  --shadow-soft: 0 2px 8px rgba(28, 18, 9, 0.04);
+  --shadow-elevated: 0 16px 48px rgba(28, 18, 9, 0.08);
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --max-content: 1200px;
+}
+
+/* ── Ambient page background ── */
+body {
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% -30%, rgba(232, 23, 122, 0.05), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 80%, rgba(107, 31, 160, 0.04), transparent 50%),
+    radial-gradient(ellipse 40% 30% at 0% 60%, rgba(196, 160, 82, 0.05), transparent 45%);
+}
+
+::selection {
+  background: rgba(232, 23, 122, 0.15);
+  color: var(--dark);
+}
+
+/* ── Navigation ── */
+.navbar {
+  height: 76px;
+  background: rgba(251, 247, 242, 0.72);
+  border-bottom: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.navbar.scrolled {
+  height: 64px;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom-color: var(--border);
+  box-shadow: 0 1px 0 var(--border), 0 12px 40px rgba(28, 18, 9, 0.06);
+}
+
+.nav-links a {
+  font-weight: 500;
+  font-size: 0.88rem;
+}
+
+.nav-links a.active {
+  background: transparent;
+  color: var(--pink);
+  box-shadow: inset 0 -2px 0 var(--pink);
+  border-radius: 0;
+}
+
+.nav-links a::after {
+  display: none;
+}
+
+.nav-cta {
+  background: var(--dark) !important;
+  color: var(--white) !important;
+  font-weight: 600 !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  padding: 11px 24px !important;
+  box-shadow: var(--shadow-soft) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.nav-cta:hover {
+  background: var(--pink) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 8px 24px rgba(232, 23, 122, 0.25) !important;
+}
+
+.mobile-nav {
+  top: 76px;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 16px 48px rgba(28, 18, 9, 0.08);
+}
+
+.navbar.scrolled + .mobile-nav,
+.navbar.scrolled ~ .mobile-nav {
+  top: 64px;
+}
+
+.mobile-nav a {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* ── Hero ── */
+.hero-video-wrap::after {
+  background: linear-gradient(
+    180deg,
+    rgba(28, 10, 0, 0.35) 0%,
+    rgba(28, 10, 0, 0.5) 45%,
+    rgba(28, 10, 0, 0.82) 100%
+  );
+}
+
+.hero-video-wrap video {
+  filter: brightness(0.5) saturate(1.05) contrast(1.05);
+}
+
+.hero-badge {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hero-title .highlight {
+  color: var(--gold-light);
+  text-shadow: 0 2px 24px rgba(196, 160, 82, 0.35);
+}
+
+.hero-scroll {
+  font-weight: 500;
+  letter-spacing: 0.28em;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--pink) 0%, #c4126a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(232, 23, 122, 0.35);
+}
+
+.btn-primary:hover {
+  background: var(--white);
+  color: var(--dark);
+  border-color: var(--white);
+  box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2);
+}
+
+.btn-outline {
+  border-color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--white);
+}
+
+/* ── Sections ── */
+.section {
+  padding: 110px 5%;
+}
+
+.section-alt {
+  background: var(--surface);
+  box-shadow: inset 0 1px 0 var(--border);
+}
+
+.section-tag {
+  color: var(--gray-muted);
+  border-color: var(--border-strong);
+}
+
+.section-title span {
+  color: var(--pink);
+}
+
+/* ── Feature cards ── */
+.feature-card {
+  padding: 40px 32px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  background: var(--surface);
+}
+
+.feature-card::before {
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--pink), var(--purple));
+  opacity: 0.85;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+  border-color: rgba(196, 160, 82, 0.2);
+}
+
+.feature-photo {
+  width: 96px;
+  height: 96px;
+  box-shadow: 0 12px 32px rgba(28, 18, 9, 0.12);
+  border: 2px solid var(--champagne);
+}
+
+/* ── Gallery ── */
+.gallery-wrap {
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-elevated);
+  padding: 8px;
+  background: var(--surface);
+}
+
+.gallery-slide {
+  border-radius: 12px;
+}
+
+.gallery-slide-overlay {
+  background: linear-gradient(to top, rgba(28, 10, 0, 0.75) 0%, transparent 60%);
+}
+
+.gallery-btn {
+  border-width: 1px;
+  border-color: var(--border-strong);
+  color: var(--dark);
+  background: var(--surface);
+}
+
+.gallery-btn:hover {
+  background: var(--dark);
+  border-color: var(--dark);
+  color: var(--white);
+}
+
+.gallery-dot {
+  border: none;
+  background: var(--border-strong);
+  width: 6px;
+  height: 6px;
+}
+
+.gallery-dot.active {
+  background: var(--dark);
+  width: 28px;
+}
+
+/* ── Product cards ── */
+.product-card {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  border-radius: 14px;
+  background: var(--surface);
+  transition: all 0.4s var(--ease-out);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(196, 160, 82, 0.15), 0 0 0 1px var(--pink);
+  border-color: rgba(232, 23, 122, 0.4);
+}
+
+.product-img-wrap {
+  background: var(--champagne);
+}
+
+.product-card:hover .product-img-wrap img {
+  transform: scale(1.04);
+}
+
+.product-badge {
+  font-weight: 600;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  backdrop-filter: blur(8px);
+  background: rgba(28, 18, 9, 0.72);
+}
+
+.product-badge.veg {
+  background: rgba(45, 138, 45, 0.9);
+}
+
+.product-info {
+  padding: 22px 22px 24px;
+  border-top: 1px solid var(--border);
+}
+
+.product-order-btn {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+}
+
+.product-order-btn:hover {
+  background: var(--dark);
+  border-color: var(--dark);
+  color: var(--white);
+  transform: none;
+}
+
+/* ── Page heroes (inner pages) ── */
+.products-hero,
+.about-hero,
+.reviews-hero,
+.contact-hero {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding-top: 128px;
+  padding-bottom: 72px;
+  position: relative;
+}
+
+.products-hero::after,
+.about-hero::after,
+.reviews-hero::after,
+.contact-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ── Tabs (Glassmorphism & Layout Updates) ── */
+.category-tabs-wrapper {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.tab-btn,
+.sub-tab-btn {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-strong);
+  color: var(--gray-text);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-soft);
+  padding: 12px 24px;
+  border-radius: 30px;
+  transition: all 0.3s var(--ease-out);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--dark) 0%, #2a1f18 100%);
+  border-color: var(--dark);
+  color: var(--white);
+  box-shadow: 0 8px 24px rgba(28, 18, 9, 0.2);
+  transform: translateY(-2px);
+}
+
+.sub-tab-btn {
+  border-color: rgba(232, 23, 122, 0.2);
+  color: var(--dark);
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 0.72rem;
+  padding: 8px 18px;
+  border-radius: 20px;
+}
+
+.sub-tab-btn:hover,
+.sub-tab-btn.active {
+  background: linear-gradient(135deg, var(--pink) 0%, #c4126a 100%);
+  border-color: transparent;
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(232, 23, 122, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ── About ── */
+.about-img-wrap {
+  border-radius: 16px;
+  box-shadow: var(--shadow-elevated);
+  border: 1px solid var(--border);
+}
+
+.about-img-badge {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.stat-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+}
+
+.stat-box .num {
+  color: var(--dark);
+}
+
+.stat-box .label {
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+}
+
+/* ── Reviews ── */
+.review-card {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  border-radius: 14px;
+}
+
+.review-card::before {
+  color: var(--champagne);
+  opacity: 1;
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(196, 160, 82, 0.2);
+}
+
+.review-avatar {
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 2px solid var(--champagne);
+  box-shadow: var(--shadow-soft);
+}
+
+.filter-btn {
+  border: 1px solid var(--border-strong);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--gray-text);
+  background: var(--surface);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--dark);
+  border-color: var(--dark);
+}
+
+.star-big .num {
+  color: var(--dark);
+}
+
+/* ── Contact ── */
+.contact-form {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-elevated);
+  border-radius: 16px;
+}
+
+.contact-form h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--cream);
+  transition: border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), background 0.25s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  background: var(--surface);
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px rgba(232, 23, 122, 0.08);
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-muted);
+}
+
+.form-submit {
+  background: var(--dark);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+}
+
+.form-submit:hover {
+  background: var(--pink);
+  box-shadow: 0 8px 28px rgba(232, 23, 122, 0.3);
+}
+
+.contact-item {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+}
+
+.contact-icon {
+  border: 1px solid var(--border);
+  background: var(--surface) !important;
+  box-shadow: var(--shadow-soft);
+}
+
+.map-wrap {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+/* ── Footer ── */
+footer {
+  background: linear-gradient(165deg, #14100c 0%, var(--dark) 40%, #1a1210 100%);
+  border-top: 1px solid rgba(196, 160, 82, 0.2);
+  padding-top: 72px;
+}
+
+.footer-brand .nav-logo-text {
+  color: var(--white);
+}
+
+.footer-col h4 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.footer-col h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.social-btn {
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-btn:hover {
+  background: transparent;
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
+.footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+/* ── WhatsApp (refined, less loud) ── */
+.whatsapp-btn {
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+  animation: none;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.06);
+}
+
+.whatsapp-tooltip {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 6px;
+  background: var(--dark);
+}
+
+/* ── Motion ── */
+.fade-in {
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+
+/* ── About value cards (inline styles overridden) ── */
+.value-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border) !important;
+  border-top: none !important;
+  box-shadow: var(--shadow-soft) !important;
+  background: var(--surface) !important;
+}
+
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--pink));
+}
+
+.value-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--shadow-elevated) !important;
+}
+
+.value-icon-wrap {
+  border: 1px solid var(--border) !important;
+  background: var(--champagne) !important;
+}
+
+.timeline-content {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+}
+
+.timeline-dot {
+  border: 3px solid var(--surface);
+  box-shadow: 0 4px 16px rgba(28, 18, 9, 0.12);
+}
+
+.partner-logo-box .logo-icon {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+/* ── Reviews CTA ── */
+.cta-review-box {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: var(--shadow-elevated);
+}
+
+.cta-review-box .btn-outline {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--white);
+}
+
+.cta-review-box .btn-outline:hover {
+  background: var(--white);
+  color: var(--dark);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar-track {
+  background: var(--champagne);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--gray-muted), var(--dark));
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .product-card,
+  .feature-card,
+  .review-card,
+  .gallery-btn,
+  .btn-primary,
+  .btn-outline {
+    transition-duration: 0.01ms !important;
+  }
+
+  .whatsapp-btn {
+    animation: none !important;
+  }
+}

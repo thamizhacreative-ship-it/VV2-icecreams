@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="VV2 Stone Cold">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8177A"/>
+      <stop offset="100%" stop-color="#6B1FA0"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="url(#g)"/>
+  <circle cx="16" cy="12" r="7" fill="#fff" opacity="0.95"/>
+  <path d="M12 19h8l-1.5 9h-5z" fill="#fff" opacity="0.85"/>
+  <ellipse cx="13.5" cy="10" rx="2" ry="1.2" fill="#E8177A" opacity="0.35"/>
+</svg>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VV2 Stone Cold Ice Creams — 100% Vegetarian, Premium Cow Milk Ice Creams in Chennai. Baskin Robbins & Mercely's partner for weddings and corporate events." />
+  <title>VV2 Stone Cold Ice Creams | Chennai</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/icons.css" />
+  <link rel="stylesheet" href="css/premium-ui.css" />
+  <!-- Favicon: replace with your actual favicon -->
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <!-- ═══════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════ -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <!-- Replace src with your actual logo file -->
+      <!-- <img src="images/logo.png" alt="VV2 Stone Cold Logo" /> -->
+      <div class="nav-logo-text">
+        VV2 Stone Cold
+        <span>Ice Creams · Chennai</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html" class="nav-cta">Order Now <svg class="icon icon-sm"><use href="images/icons.svg#icon-scoop"/></svg></a></li>
+    </ul>
+
+    <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav">
+    <a href="index.html"><svg class="icon icon-sm"><use href="images/icons.svg#icon-home"/></svg> Home</a>
+    <a href="products.html"><svg class="icon icon-sm"><use href="images/icons.svg#icon-scoop"/></svg> Products</a>
+    <a href="about.html"><svg class="icon icon-sm"><use href="images/icons.svg#icon-heart"/></svg> About Us</a>
+    <a href="reviews.html"><svg class="icon icon-sm"><use href="images/icons.svg#icon-star"/></svg> Reviews</a>
+    <a href="contact.html"><svg class="icon icon-sm"><use href="images/icons.svg#icon-phone"/></svg> Contact</a>
+  </div>
+
+  <!-- ═══════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════ -->
+  <section class="hero">
+    <!-- VIDEO BACKGROUND -->
+    <!-- To add your video: place a .mp4 file in images/ folder and update the src below -->
+    <div class="hero-video-wrap">
+      <video class="hero-video" autoplay muted loop playsinline
+             poster="images/hero-poster.jpg">
+        <!-- REPLACE src WITH YOUR VIDEO FILE PATH -->
+        <source src="images/hero-bg.mp4" type="video/mp4" />
+      </video>
+      <!-- Fallback gradient if video not found -->
+    </div>
+    <!-- Fallback if no video loaded -->
+    <div class="hero-bg-fallback"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge"><svg class="icon icon-sm" style="fill: #2d8a2d; margin-right: 4px;"><use href="images/icons.svg#icon-veg"/></svg> 100% Vegetarian · Premium Cow Milk</div>
+      <h1 class="hero-title">
+        Chennai's Coolest
+        <span class="highlight">Stone Cold</span>
+        Experience
+      </h1>
+      <p class="hero-subtitle">Real fruit scoops, signature desserts & unforgettable events</p>
+      <div class="hero-btns">
+        <a href="products.html" class="btn-primary">Explore Menu <svg class="icon icon-sm"><use href="images/icons.svg#icon-scoop"/></svg></a>
+        <a href="contact.html" class="btn-outline">Book for Event <svg class="icon icon-sm"><use href="images/icons.svg#icon-calendar"/></svg></a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <svg class="icon icon-sm" viewBox="0 0 48 48"><use href="images/icons.svg#icon-scroll-down"/></svg>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════
+       WHY CHOOSE US
+  ═══════════════════════════════ -->
+  <section class="section">
+    <div class="section-header fade-in">
+      <div class="section-tag">Why VV2?</div>
+      <h2 class="section-title">Made with <span>Love & Quality</span></h2>
+      <p class="section-desc">Every scoop is crafted with premium cow milk and real fruits — no artificial shortcuts.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card fade-in fade-in-delay-1">
+        <div class="feature-photo" data-feature-photo="milk" role="img" aria-label="Premium cow milk"></div>
+        <h3>Premium Cow Milk</h3>
+        <p>Only the finest quality sourced fresh — no compromises on purity.</p>
+      </div>
+      <div class="feature-card fade-in fade-in-delay-2">
+        <div class="feature-photo" data-feature-photo="veg" role="img" aria-label="Fresh vegetarian ingredients"></div>
+        <h3>100% Vegetarian</h3>
+        <p>Every product is completely vegetarian — perfect for all families and events.</p>
+      </div>
+      <div class="feature-card fade-in fade-in-delay-3">
+        <div class="feature-photo" data-feature-photo="fruit" role="img" aria-label="Real fruit ice cream"></div>
+        <h3>Real Fruit Scoops</h3>
+        <p>Mango, strawberry, jackfruit and more — real fruit inside every scoop.</p>
+      </div>
+      <div class="feature-card fade-in fade-in-delay-4">
+        <div class="feature-photo" data-feature-photo="events" role="img" aria-label="Event ice cream service"></div>
+        <h3>Event Specialists</h3>
+        <p>Weddings, corporates, birthdays — we bring the chill to every celebration.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════
+       GALLERY / CAROUSEL
+  ═══════════════════════════════ -->
+  <section class="section section-alt">
+    <div class="section-header fade-in">
+      <div class="section-tag">Gallery</div>
+      <h2 class="section-title">A Feast for <span>Your Eyes</span></h2>
+      <p class="section-desc">From vibrant scoops to stunning event setups — see what we bring to the table.</p>
+    </div>
+
+    <div class="gallery-wrap fade-in">
+      <div class="gallery-track">
+        <!-- GALLERY SLIDES: Replace src with your actual images in images/ folder -->
+        <!-- Each slide = one photo. Add or remove slides as needed. -->
+
+        <div class="gallery-slide">
+          <img src="images/gallery-1.jpg" alt="Fruit ice cream scoops" loading="lazy" />
+          <div class="gallery-slide-overlay"><span>Real Fruit Scoops</span></div>
+        </div>
+
+        <div class="gallery-slide">
+          <img src="images/gallery-2.jpg" alt="Milkshakes" loading="lazy" />
+          <div class="gallery-slide-overlay"><span>Premium Milkshakes</span></div>
+        </div>
+
+        <div class="gallery-slide">
+          <img src="images/gallery-3.jpg" alt="Event setup" loading="lazy" />
+          <div class="gallery-slide-overlay"><span>Wedding Event Setup</span></div>
+        </div>
+
+        <div class="gallery-slide">
+          <img src="images/gallery-4.jpg" alt="Stick variants" loading="lazy" />
+          <div class="gallery-slide-overlay"><span>Stick Variants</span></div>
+        </div>
+
+        <div class="gallery-slide">
+          <img src="images/gallery-5.jpg" alt="Fruit floats" loading="lazy" />
+          <div class="gallery-slide-overlay"><span>Fruit Floats</span></div>
+        </div>
+
+        <div class="gallery-slide">
+          <img src="images/gallery-6.jpg" alt="Brownie sundae" loading="lazy" />
+          <div class="gallery-slide-overlay"><span>Brownie Sundae</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-controls">
+      <button class="gallery-btn gallery-prev" aria-label="Previous">
+        <svg class="icon icon-md" aria-hidden="true"><use href="images/icons.svg#icon-chevron-left"/></svg>
+      </button>
+      <div class="gallery-dots">
+        <div class="gallery-dot active"></div>
+        <div class="gallery-dot"></div>
+        <div class="gallery-dot"></div>
+        <div class="gallery-dot"></div>
+        <div class="gallery-dot"></div>
+        <div class="gallery-dot"></div>
+      </div>
+      <button class="gallery-btn gallery-next" aria-label="Next">
+        <svg class="icon icon-md" aria-hidden="true"><use href="images/icons.svg#icon-chevron-right"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════
+       QUICK MENU PREVIEW
+  ═══════════════════════════════ -->
+  <section class="section">
+    <div class="section-header fade-in">
+      <div class="section-tag">Featured</div>
+      <h2 class="section-title">Fan <span>Favourites</span></h2>
+    </div>
+
+    <div class="products-grid" style="max-width:1100px; margin: 0 auto;">
+
+      <div class="product-card fade-in fade-in-delay-1">
+        <div class="product-img-wrap">
+          <!-- REPLACE with your actual image: images/scoop-strawberry.jpg -->
+          <img src="images/scoop-strawberry.jpg" alt="Strawberry Scoop" loading="lazy"
+/>
+          <div class="product-img-placeholder" style="display:none;">
+            <svg class="icon icon-2xl" style="fill: var(--pink);"><use href="images/icons.svg#icon-strawberry"/></svg>
+          </div>
+          <span class="product-badge veg"><svg class="icon icon-sm" style="fill: currentColor; margin-right: 2px;"><use href="images/icons.svg#icon-veg"/></svg> Veg</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Strawberry Scoop</div>
+          <div class="product-desc">Real strawberry fruit ice cream, 60 gms</div>
+          <div class="product-footer">
+            <div class="product-price">₹90 <small>per scoop</small></div>
+            <button class="product-order-btn">Order via WA</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-in fade-in-delay-2">
+        <div class="product-img-wrap">
+          <img src="images/mango-in-mango.jpg" alt="Mango in Mango" loading="lazy"
+/>
+          <div class="product-img-placeholder" style="display:none;">
+            <svg class="icon icon-2xl" style="fill: var(--orange);"><use href="images/icons.svg#icon-mango"/></svg>
+          </div>
+          <span class="product-badge">Popular</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Mango-in-Mango</div>
+          <div class="product-desc">Premium mango ice cream served inside a real mango</div>
+          <div class="product-footer">
+            <div class="product-price">₹50</div>
+            <button class="product-order-btn">Order via WA</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-in fade-in-delay-3">
+        <div class="product-img-wrap">
+          <img src="images/brownie-sundae.jpg" alt="Brownie Sundae" loading="lazy"
+/>
+          <div class="product-img-placeholder" style="display:none;">
+            <svg class="icon icon-2xl" style="fill: var(--brown);"><use href="images/icons.svg#icon-brownie"/></svg>
+          </div>
+          <span class="product-badge" style="background:var(--purple);">Signature</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Brownie Sundae</div>
+          <div class="product-desc">Warm brownie topped with ice cream, 30 gms</div>
+          <div class="product-footer">
+            <div class="product-price">₹69</div>
+            <button class="product-order-btn">Order via WA</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-in fade-in-delay-4">
+        <div class="product-img-wrap">
+          <img src="images/lotus-biscoff.jpg" alt="Lotus Biscoff" loading="lazy"
+/>
+          <div class="product-img-placeholder" style="display:none;">
+            <svg class="icon icon-2xl" style="fill: var(--brown-mid);"><use href="images/icons.svg#icon-cookie"/></svg>
+          </div>
+          <span class="product-badge" style="background:var(--orange);">New</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Lotus Biscoff Cheesecake</div>
+          <div class="product-desc">Creamy cheesecake with signature Biscoff crunch</div>
+          <div class="product-footer">
+            <div class="product-price">₹65</div>
+            <button class="product-order-btn">Order via WA</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <a href="products.html" class="btn-primary">See Full Menu <svg class="icon icon-sm"><use href="images/icons.svg#icon-scoop"/></svg></a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════
+       FOOTER
+  ═══════════════════════════════ -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="nav-logo-text">VV2 Stone Cold<span>Ice Creams · Chennai</span></span>
+        <p>100% Vegetarian ice cream made with premium cow milk. Partners of Baskin-Robbins & Mercely's Ice Cream. Serving weddings, corporate events and celebrations across Chennai.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 48 48" fill="currentColor"><use href="images/icons.svg#icon-instagram"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 48 48" fill="currentColor"><use href="images/icons.svg#icon-facebook"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 48 48" fill="currentColor"><use href="images/icons.svg#icon-whatsapp"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="products.html#scoops">Real Fruit Scoops</a></li>
+          <li><a href="products.html#sticks">Stick Variants</a></li>
+          <li><a href="products.html#signature">Signature Dishes</a></li>
+          <li><a href="products.html#signature">Milkshakes</a></li>
+          <li><a href="products.html#signature">Fruit Floats</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919884964132">98849 64132</a></li>
+          <li><a href="tel:+919176248299">91762 48299</a></li>
+          <li><a href="tel:+919884964131">98849 64131</a></li>
+          <li><a href="contact.html">Old No.24, New No.30,<br>Balfour Road, Kilpauk,<br>Chennai – 600 010</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 VV2 Stone Cold Ice Creams · M.V. Arun Kumar · All rights reserved.</p>
+      <p>Made with <svg class="icon icon-sm" style="fill: var(--pink);"><use href="images/icons.svg#icon-scoop"/></svg> in Chennai</p>
++    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════
+       FLOATING WHATSAPP BUTTON
+  ═══════════════════════════════ -->
+  <div class="whatsapp-float">
+    <span class="whatsapp-tooltip">Order on WhatsApp!</span>
+    <button class="whatsapp-btn" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+    </button>
+  </div>
+
+  <script src="js/premium-images.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,2434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Official Menu | VV2 Stone Cold Ice Creams Chennai — Premium 100% vegetarian Baskin-Robbins partner menu." />
+  <title>Menu | VV2 Stone Cold Ice Creams</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/icons.css" />
+  <link rel="stylesheet" href="css/premium-ui.css" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <style>
+    /* ════════════════════════════════════
+       PRODUCTS PAGE — DESIGN LAYER
+       All colours reference the root
+       variables from style.css / premium-ui.css
+    ════════════════════════════════════ */
+
+    /* ── Hero ── */
+    .products-hero {
+      text-align: center;
+      padding: 140px 5% 64px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .products-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 0%, rgba(232,23,122,0.07), transparent 65%),
+        radial-gradient(ellipse 40% 40% at 90% 100%, rgba(107,31,160,0.05), transparent 55%);
+      pointer-events: none;
+    }
+    .products-hero .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+      border: 1px solid var(--border-strong);
+      padding: 8px 18px;
+      border-radius: 30px;
+      margin-bottom: 20px;
+    }
+    .products-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.1;
+      margin-bottom: 14px;
+      letter-spacing: 0.01em;
+    }
+    .products-hero h1 span { color: var(--pink); font-style: italic; }
+    .products-hero p {
+      font-size: 0.88rem;
+      color: var(--gray-text);
+      letter-spacing: 0.06em;
+      max-width: 460px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Menu section wrapper ── */
+    .menu-section { padding: 0 5% 100px; }
+
+    /* ── Sticky tab bar ── */
+    .tab-bar-wrap {
+      position: sticky;
+      top: 64px;
+      z-index: 100;
+      background: rgba(251,247,242,0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      margin: 0 -5% 52px;
+    }
+    .tab-bar {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .tab-bar::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 18px 20px;
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--dark); }
+    .tab-btn.active { color: var(--pink); border-bottom-color: var(--pink); }
+    .tab-btn svg { opacity: 0.65; transition: opacity 0.2s; }
+    .tab-btn.active svg, .tab-btn:hover svg { opacity: 1; }
+
+    /* ── Tab / sub-tab panels ── */
+    .tab-panel  { display: none; padding-top: 52px; }
+    .tab-panel.active { display: block; }
+    .sub-panel  { display: none; }
+    .sub-panel.active { display: block; }
+
+    /* ── Panel header ── */
+    .panel-header { margin-bottom: 36px; max-width: 560px; }
+    .panel-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .panel-header h2 span { color: var(--pink); font-style: italic; }
+    .panel-header p { font-size: 0.86rem; color: var(--gray-text); line-height: 1.7; }
+
+    /* ── Sub-tabs ── */
+    .sub-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .sub-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      font-family: var(--font-body);
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-text);
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.22s;
+    }
+    .sub-tab-btn:hover { border-color: var(--pink); color: var(--pink); }
+    .sub-tab-btn.active {
+      background: var(--dark);
+      border-color: var(--dark);
+      color: var(--white);
+    }
+
+    /* ── Products grid ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 18px;
+    }
+
+    /* ── Product card ── */
+    .product-card {
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(28,18,9,0.04);
+      transition:
+        transform 0.35s cubic-bezier(0.22,1,0.36,1),
+        box-shadow 0.35s cubic-bezier(0.22,1,0.36,1),
+        border-color 0.25s;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(28,18,9,0.1), 0 0 0 1px rgba(232,23,122,0.28);
+      border-color: rgba(232,23,122,0.32);
+    }
+
+    /* ── Image wrap ── */
+    .product-img-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--champagne);
+    }
+    .product-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .product-card:hover .product-img-wrap img { transform: scale(1.06); }
+
+    /*
+      ── PLACEHOLDER ──
+      Shows automatically when image is missing (onerror).
+      Displays a coloured gradient + flavour initial letter.
+      Once you add the real image file, the photo takes over
+      and the placeholder hides itself.
+    */
+    .product-img-placeholder {
+      position: absolute; inset: 0;
+      display: none; /* hidden by default; shown by onerror */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .ph-initial {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
+      opacity: 0.18;
+    }
+    .ph-label {
+      font-family: var(--font-body);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    /* Placeholder colour themes */
+    .ph-pink   { background: linear-gradient(145deg, #fce4ef, #f9b8d2); color: var(--pink); }
+    .ph-orange { background: linear-gradient(145deg, #fff0e0, #ffd4a0); color: #d16000; }
+    .ph-purple { background: linear-gradient(145deg, #ede0f7, #d4b0ef); color: var(--purple); }
+    .ph-brown  { background: linear-gradient(145deg, #f5ede3, #e8d0b8); color: #7a4010; }
+    .ph-green  { background: linear-gradient(145deg, #e2f5e4, #b8e8be); color: #2a7a30; }
+    .ph-gold   { background: linear-gradient(145deg, #fdf6e0, #f0e0a0); color: #8a6800; }
+    .ph-teal   { background: linear-gradient(145deg, #ddf5f2, #aaeae4); color: #1a7a72; }
+    .ph-red    { background: linear-gradient(145deg, #fde4e4, #f7b8b8); color: #b02020; }
+
+    /* ── Product badge ── */
+    .product-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 11px;
+      border-radius: 20px;
+      color: var(--white);
+      backdrop-filter: blur(8px);
+      background: rgba(28,18,9,0.68);
+    }
+    .product-badge.veg     { background: rgba(34,120,34,0.88); }
+    .product-badge.sig     { background: linear-gradient(135deg, var(--purple), #9333d6); }
+    .product-badge.fav     { background: rgba(232,23,122,0.88); }
+    .product-badge.award   { background: rgba(196,160,82,0.92); }
+    .product-badge.new-tag { background: rgba(28,18,9,0.78); }
+
+    /* ── Product info ── */
+    .product-info {
+      padding: 16px 16px 18px;
+      border-top: 1px solid var(--border);
+    }
+    .product-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.25;
+      margin-bottom: 4px;
+      letter-spacing: 0.01em;
+    }
+    .product-desc {
+      font-size: 0.78rem;
+      color: var(--gray-text);
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .product-price {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .product-price small { font-size: 0.7rem; font-weight: 500; color: var(--gray-muted); }
+    .product-order-btn {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 7px 15px;
+      border-radius: 20px;
+      border: 1px solid var(--border-strong);
+      background: transparent;
+      color: var(--dark);
+      cursor: pointer;
+      transition: all 0.22s;
+    }
+    .product-order-btn:hover {
+      background: var(--dark);
+      border-color: var(--dark);
+      color: var(--white);
+    }
+
+    /* ── Section block header ── */
+    .menu-block { margin-top: 52px; }
+    .menu-block:first-child { margin-top: 0; }
+    .menu-block-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .menu-block-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .menu-block-meta {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+      border: 1px solid var(--border-strong);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+
+
+    /* ── Cake cards ── */
+    .cake-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .cake-card {
+      padding: 26px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.32s cubic-bezier(0.22,1,0.36,1);
+    }
+    .cake-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--pink));
+      opacity: 0;
+      transition: opacity 0.28s;
+    }
+    .cake-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(28,18,9,0.1); border-color: rgba(196,160,82,0.28); }
+    .cake-card:hover::before { opacity: 1; }
+    .cake-emoji { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .cake-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--dark); line-height: 1.25; margin-bottom: 5px; }
+    .cake-meta { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-muted); }
+    .cake-order-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 14px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 7px 15px;
+      border-radius: 20px;
+      border: 1px solid var(--border-strong);
+      background: transparent;
+      color: var(--dark);
+      cursor: pointer;
+      transition: all 0.22s;
+    }
+    .cake-order-btn:hover { background: var(--pink); border-color: var(--pink); color: var(--white); }
+
+    /* ── Topping cards ── */
+    .toppings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .topping-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.22s;
+    }
+    .topping-card:hover { border-color: rgba(232,23,122,0.3); box-shadow: 0 6px 18px rgba(28,18,9,0.06); transform: translateY(-2px); }
+    .topping-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .topping-name { font-family: var(--font-display); font-size: 0.97rem; font-weight: 600; color: var(--dark); }
+    .topping-type { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-muted); margin-top: 2px; }
+
+    /* ── Event CTA banner ── */
+    .event-cta {
+      margin-top: 52px;
+      padding: 36px 40px;
+      background: var(--dark);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .event-cta h3 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+    .event-cta p  { font-size: 0.86rem; color: rgba(255,255,255,0.55); max-width: 400px; line-height: 1.65; }
+    .event-cta-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--pink);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: all 0.22s;
+    }
+    .event-cta-btn:hover { background: #fff; color: var(--dark); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .tab-bar-wrap { top: 76px; }
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 14px; }
+      .item-list { grid-template-columns: 1fr 1fr; }
+      .cake-grid { grid-template-columns: 1fr 1fr; }
+      .toppings-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .products-hero { padding-top: 110px; padding-bottom: 44px; }
+      .menu-section { padding-bottom: 72px; }
+      .tab-panel { padding-top: 36px; }
+      .products-grid { grid-template-columns: 1fr 1fr; gap: 11px; }
+      .item-list { grid-template-columns: 1fr; }
+      .cake-grid { grid-template-columns: 1fr 1fr; }
+      .toppings-grid { grid-template-columns: 1fr; }
+      .tab-btn { padding: 16px 13px; font-size: 0.7rem; gap: 5px; }
+      .event-cta { padding: 28px 24px; }
+    }
+    @media (max-width: 360px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .cake-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-text">VV2 Stone Cold<span>Ice Creams · Chennai</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="contact.html" class="nav-cta">Order Now <svg class="icon icon-sm"><use href="images/icons.svg#icon-scoop"/></svg></a></li>
+  </ul>
+  <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-nav">
+  <a href="index.html"><svg class="icon icon-sm"><use href="images/icons.svg#icon-home"/></svg> Home</a>
+  <a href="products.html"><svg class="icon icon-sm"><use href="images/icons.svg#icon-scoop"/></svg> Products</a>
+  <a href="about.html"><svg class="icon icon-sm"><use href="images/icons.svg#icon-heart"/></svg> About Us</a>
+  <a href="reviews.html"><svg class="icon icon-sm"><use href="images/icons.svg#icon-star"/></svg> Reviews</a>
+  <a href="contact.html"><svg class="icon icon-sm"><use href="images/icons.svg#icon-phone"/></svg> Contact</a>
+</div>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="products-hero">
+  <div class="hero-tag">
+    <svg class="icon icon-sm" style="fill:var(--pink);"><use href="images/icons.svg#icon-badge"/></svg>
+    Baskin-Robbins Partner · Est. 2012 · 2025–2026 Menu
+  </div>
+  <h1>Choose Your <span>Sweet Escape</span></h1>
+  <p>100% Vegetarian · Real Fruits · Premium Cow Milk · Handcrafted in Chennai since 2012</p>
+</div>
+
+<!-- ══ MENU SECTION ══ -->
+<section class="menu-section" id="menu">
+
+  <!-- STICKY TAB BAR -->
+  <div class="tab-bar-wrap">
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="scoops">
+        <svg class="icon icon-sm" style="fill:currentColor;"><use href="images/icons.svg#icon-scoop"/></svg> Scoops
+      </button>
+      <button class="tab-btn" data-tab="prepacked">
+        <svg class="icon icon-sm" style="fill:currentColor;"><use href="images/icons.svg#icon-cup"/></svg> Cups &amp; Sundaes
+      </button>
+      <button class="tab-btn" data-tab="onthego">
+        <svg class="icon icon-sm" style="fill:currentColor;"><use href="images/icons.svg#icon-stick"/></svg> On-The-Go
+      </button>
+      <button class="tab-btn" data-tab="cakes">
+        <svg class="icon icon-sm" style="fill:currentColor;"><use href="images/icons.svg#icon-cake"/></svg> Cakes
+      </button>
+      <button class="tab-btn" data-tab="toppings">
+        <svg class="icon icon-sm" style="fill:currentColor;"><use href="images/icons.svg#icon-sparkle"/></svg> Sauces &amp; Toppings
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       TAB 1 — SCOOP ICE CREAMS
+       Image filenames: images/scoop-[slug].jpg
+       Example: images/scoop-banana-strawberry.jpg
+  ══════════════════════════════════════ -->
+  <div class="tab-panel active" id="scoops">
+
+    <div class="panel-header fade-in">
+      <h2>Premium <span>Scoop Ice Creams</span></h2>
+      <p>60 gms per scoop · ₹90 each · Served in cups — waffle cone +₹25. All made with 100% premium cow milk.</p>
+    </div>
+
+    <div class="sub-tabs">
+      <button class="sub-tab-btn active" data-subtab="fruit-scoops">
+        <svg class="icon icon-sm" style="fill:currentColor;"><use href="images/icons.svg#icon-strawberry"/></svg> Fruit
+      </button>
+      <button class="sub-tab-btn" data-subtab="choc-scoops">
+        <svg class="icon icon-sm" style="fill:currentColor;"><use href="images/icons.svg#icon-chocolate"/></svg> Chocolate
+      </button>
+      <button class="sub-tab-btn" data-subtab="classic-scoops">
+        <svg class="icon icon-sm" style="fill:currentColor;"><use href="images/icons.svg#icon-cookie"/></svg> Classic &amp; Nut
+      </button>
+    </div>
+
+    <!-- ── FRUIT SCOOPS ── -->
+    <div class="sub-panel active" id="fruit-scoops">
+      <div class="products-grid">
+
+        <!-- IMAGE FILE: images/scoop-banana-strawberry.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-banana-strawberry.jpg" alt="Banana 'N Strawberry" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink">
+              <span class="ph-initial">B</span>
+              <span class="ph-label">Banana 'N Strawberry</span>
+            </div>
+            <span class="product-badge veg">Veg</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Banana 'N Strawberry</div>
+            <div class="product-desc">Sun-ripened banana and fresh strawberry in a creamy swirl.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-tender-coconut.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-tender-coconut.jpg" alt="Tender Coconut" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">T</span>
+              <span class="ph-label">Tender Coconut</span>
+            </div>
+            <span class="product-badge veg">Veg</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Tender Coconut</div>
+            <div class="product-desc">South Indian classic with real soft coconut shreds throughout.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-alphonso-mango.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-alphonso-mango.jpg" alt="Mango / Alphonso Mango" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-orange">
+              <span class="ph-initial">M</span>
+              <span class="ph-label">Alphonso Mango</span>
+            </div>
+            <span class="product-badge veg">Veg</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Mango / Alphonso Mango</div>
+            <div class="product-desc">Rich pulp of handpicked Ratnagiri Alphonso mangoes.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-fruit-overload.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-fruit-overload.jpg" alt="Fruit Overload" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink">
+              <span class="ph-initial">F</span>
+              <span class="ph-label">Fruit Overload</span>
+            </div>
+            <span class="product-badge veg">Veg</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Fruit Overload</div>
+            <div class="product-desc">Vanilla base packed with a wild assortment of candied tropical fruits.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-black-currant.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-black-currant.jpg" alt="Black Currant" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-purple">
+              <span class="ph-initial">B</span>
+              <span class="ph-label">Black Currant</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Black Currant</div>
+            <div class="product-desc">Bold, tangy blackcurrant paired with real dried currant pieces.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-very-berry-strawberry.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-very-berry-strawberry.jpg" alt="Very Berry Strawberry" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink">
+              <span class="ph-initial">V</span>
+              <span class="ph-label">Very Berry Strawberry</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Very Berry Strawberry</div>
+            <div class="product-desc">Strawberry ice cream bursting with real, juicy fruit chunks.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-banana-caramel.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-banana-caramel.jpg" alt="Banana Caramel" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">B</span>
+              <span class="ph-label">Banana Caramel</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Banana Caramel</div>
+            <div class="product-desc">Creamy banana layered with buttery golden caramel swirls.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-pink-guava.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-pink-guava.jpg" alt="Pink Guava" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink">
+              <span class="ph-initial">P</span>
+              <span class="ph-label">Pink Guava</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Pink Guava</div>
+            <div class="product-desc">Intense tropical sweet-tart — the real taste of a ripe pink guava.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-litchi.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-litchi.jpg" alt="Litchi" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-teal">
+              <span class="ph-initial">L</span>
+              <span class="ph-label">Litchi</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Litchi</div>
+            <div class="product-desc">Delicate, floral, and extraordinarily refreshing real litchi base.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-pineapple.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-pineapple.jpg" alt="Pineapple" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-orange">
+              <span class="ph-initial">P</span>
+              <span class="ph-label">Pineapple</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Pineapple</div>
+            <div class="product-desc">Bright, tangy pineapple base studded with golden fruit pieces.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-blueberry-white-choc.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-blueberry-white-choc.jpg" alt="Blueberry 'N White Chocolate" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-purple">
+              <span class="ph-initial">B</span>
+              <span class="ph-label">Blueberry 'N White Choc</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Blueberry 'N White Chocolate</div>
+            <div class="product-desc">Tart wild blueberry compote folded into velvet white chocolate.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /fruit-scoops -->
+
+
+    <!-- ── CHOCOLATE SCOOPS ── -->
+    <div class="sub-panel" id="choc-scoops">
+      <div class="products-grid">
+
+        <!-- IMAGE FILE: images/scoop-mississippi-mud.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-mississippi-mud.jpg" alt="Mississippi Mud" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">M</span>
+              <span class="ph-label">Mississippi Mud</span>
+            </div>
+            <span class="product-badge fav">Fan Fav</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Mississippi Mud</div>
+            <div class="product-desc">Ultra-rich chocolate fudge with crunchy biscuit chunks throughout.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-three-cheers-chocolate.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-three-cheers-chocolate.jpg" alt="Three Cheers Chocolate" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">T</span>
+              <span class="ph-label">Three Cheers Chocolate</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Three Cheers Chocolate</div>
+            <div class="product-desc">A three-layered chocolate celebration — dark, milk, and white.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-chocolate-almond-praline.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-chocolate-almond-praline.jpg" alt="Chocolate Almond Praline" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">C</span>
+              <span class="ph-label">Chocolate Almond Praline</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Chocolate Almond Praline</div>
+            <div class="product-desc">Dark Belgian chocolate with caramelised almond praline swirls.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-mint-milk-chocolate-chip.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-mint-milk-chocolate-chip.jpg" alt="Mint Milk Chocolate Chip" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-green">
+              <span class="ph-initial">M</span>
+              <span class="ph-label">Mint Milk Choc Chip</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Mint Milk Chocolate Chip</div>
+            <div class="product-desc">Cool peppermint cream scattered with rich dark chocolate chips.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-gold-medal-ribbon.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-gold-medal-ribbon.jpg" alt="Gold Medal Ribbon" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">G</span>
+              <span class="ph-label">Gold Medal Ribbon</span>
+            </div>
+            <span class="product-badge award">Award</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Gold Medal Ribbon</div>
+            <div class="product-desc">Award-winning vanilla ribboned with gorgeous golden caramel fudge.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-belgian-bliss.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-belgian-bliss.jpg" alt="Belgian Bliss" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">B</span>
+              <span class="ph-label">Belgian Bliss</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Belgian Bliss</div>
+            <div class="product-desc">Smooth, indulgent Belgian couverture chocolate — deeply satisfying.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-dutch-chocolate.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-dutch-chocolate.jpg" alt="Dutch Chocolate" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">D</span>
+              <span class="ph-label">Dutch Chocolate</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Dutch Chocolate</div>
+            <div class="product-desc">Classic Dutch-process cocoa with a deep, clean chocolate finish.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-chocolate-mousse-royale.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-chocolate-mousse-royale.jpg" alt="Chocolate Mousse Royale" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">C</span>
+              <span class="ph-label">Choc Mousse Royale</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Chocolate Mousse Royale</div>
+            <div class="product-desc">Airy mousse-style chocolate — lighter yet intensely flavourful.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-bavarian-chocolate.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-bavarian-chocolate.jpg" alt="Bavarian Chocolate" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">B</span>
+              <span class="ph-label">Bavarian Chocolate</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Bavarian Chocolate</div>
+            <div class="product-desc">Refined old-world chocolate recipe with warm hazelnut undertones.</div>
+            <div class="product-footer">
+              <div class="product-price">₹90 <small>/ scoop</small></div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /choc-scoops -->
+
+
+    <!-- ── CLASSIC & NUT SCOOPS ── -->
+    <div class="sub-panel" id="classic-scoops">
+      <div class="products-grid">
+
+        <!-- IMAGE FILE: images/scoop-classic-vanilla.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-classic-vanilla.jpg" alt="Classic Vanilla" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold"><span class="ph-initial">C</span><span class="ph-label">Classic Vanilla</span></div>
+            <span class="product-badge veg">Classic</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Classic Vanilla</div>
+            <div class="product-desc">The original — rich Madagascar vanilla in pure cream perfection.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-california-pistachio.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-california-pistachio.jpg" alt="California Pistachio" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-green"><span class="ph-initial">C</span><span class="ph-label">California Pistachio</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">California Pistachio</div>
+            <div class="product-desc">Premium roasted Californian pistachios in a silky cream base.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-roasted-coffee-creme.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-roasted-coffee-creme.jpg" alt="Roasted Coffee Crème" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown"><span class="ph-initial">R</span><span class="ph-label">Roasted Coffee Crème</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Roasted Coffee Crème</div>
+            <div class="product-desc">Slow-roasted espresso folded into a luscious crème base.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-lotus-biscoff.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-lotus-biscoff.jpg" alt="Lotus Biscoff®" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-orange"><span class="ph-initial">L</span><span class="ph-label">Lotus Biscoff®</span></div>
+            <span class="product-badge fav">Fan Fav</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Lotus Biscoff®</div>
+            <div class="product-desc">Iconic caramelised biscuit swirled through velvety cream.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-splish-splash.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-splish-splash.jpg" alt="Splish Splash" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-teal"><span class="ph-initial">S</span><span class="ph-label">Splish Splash</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Splish Splash</div>
+            <div class="product-desc">A playful whirl of bright colours and fruity flavour bursts.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-hop-scotch-butterscotch.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-hop-scotch-butterscotch.jpg" alt="Hop Scotch Butterscotch" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold"><span class="ph-initial">H</span><span class="ph-label">Hop Scotch Butterscotch</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Hop Scotch Butterscotch</div>
+            <div class="product-desc">Buttery golden butterscotch — smooth, warm, and utterly classic.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-honey-nut-crunch.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-honey-nut-crunch.jpg" alt="Honey Nut Crunch" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold"><span class="ph-initial">H</span><span class="ph-label">Honey Nut Crunch</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Honey Nut Crunch</div>
+            <div class="product-desc">Sweet wildflower honey with toasted nut clusters throughout.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-cotton-candy.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-cotton-candy.jpg" alt="Cotton Candy" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink"><span class="ph-initial">C</span><span class="ph-label">Cotton Candy</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Cotton Candy</div>
+            <div class="product-desc">Fluffy spun sugar flavour in a pastel pink cloud of sweetness.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-roasted-californian-almond.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-roasted-californian-almond.jpg" alt="Roasted Californian Almond" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold"><span class="ph-initial">R</span><span class="ph-label">Roasted Californian Almond</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Roasted Californian Almond</div>
+            <div class="product-desc">Deeply roasted almond pieces in a rich, warm caramel cream.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-pralines-n-cream.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-pralines-n-cream.jpg" alt="Pralines 'N Cream" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold"><span class="ph-initial">P</span><span class="ph-label">Pralines 'N Cream</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Pralines 'N Cream</div>
+            <div class="product-desc">Crunchy caramelised praline pieces folded into velvety cream.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-kesar-pista.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-kesar-pista.jpg" alt="Kesar Pista" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-orange"><span class="ph-initial">K</span><span class="ph-label">Kesar Pista</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Kesar Pista</div>
+            <div class="product-desc">Fragrant Kashmiri saffron with real pistachio — a royal Indian classic.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-butterscotch-ribbon.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-butterscotch-ribbon.jpg" alt="Butterscotch Ribbon" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold"><span class="ph-initial">B</span><span class="ph-label">Butterscotch Ribbon</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Butterscotch Ribbon</div>
+            <div class="product-desc">Vanilla cream threaded with thick ribbons of butterscotch fudge.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-cookies-n-cream.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-cookies-n-cream.jpg" alt="Cookies 'N Cream" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown"><span class="ph-initial">C</span><span class="ph-label">Cookies 'N Cream</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Cookies 'N Cream</div>
+            <div class="product-desc">Vanilla ice cream packed with generous chocolate cookie crumble.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-almonds-n-caramel.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-almonds-n-caramel.jpg" alt="Almonds 'N Caramel" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold"><span class="ph-initial">A</span><span class="ph-label">Almonds 'N Caramel</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Almonds 'N Caramel</div>
+            <div class="product-desc">Whole roasted almonds swimming in a buttery caramel cream.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-red-velvet-fantasy.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-red-velvet-fantasy.jpg" alt="Red Velvet Fantasy" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-red"><span class="ph-initial">R</span><span class="ph-label">Red Velvet Fantasy</span></div>
+            <span class="product-badge new-tag">New</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Red Velvet Fantasy</div>
+            <div class="product-desc">Velvety red cake crumbles swirled through cream cheese ice cream.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-top-notch-butterscotch.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-top-notch-butterscotch.jpg" alt="Top Notch Butterscotch" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold"><span class="ph-initial">T</span><span class="ph-label">Top Notch Butterscotch</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Top Notch Butterscotch</div>
+            <div class="product-desc">The butterscotch to beat — deep, golden, and uncompromisingly good.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-brown-biscuit-boba.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-brown-biscuit-boba.jpg" alt="Brown Biscuit Boba" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown"><span class="ph-initial">B</span><span class="ph-label">Brown Biscuit Boba</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Brown Biscuit Boba</div>
+            <div class="product-desc">Chewy boba pearls and biscuit crumble in a caramel cream base.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-pistachio-caramel.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-pistachio-caramel.jpg" alt="Pistachio Caramel" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-green"><span class="ph-initial">P</span><span class="ph-label">Pistachio Caramel</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Pistachio Caramel</div>
+            <div class="product-desc">Finely ground pistachios ribboned with golden liquid caramel.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-caramel-biscuit.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-caramel-biscuit.jpg" alt="Caramel Biscuit" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold"><span class="ph-initial">C</span><span class="ph-label">Caramel Biscuit</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Caramel Biscuit</div>
+            <div class="product-desc">Buttery caramel ice cream with crunchy spiced biscuit chunks.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/scoop-shooting-star.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/scoop-shooting-star.jpg" alt="Shooting Star" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-purple"><span class="ph-initial">S</span><span class="ph-label">Shooting Star</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Shooting Star</div>
+            <div class="product-desc">A galaxy of popping candy, sprinkles, and sweet starry cream.</div>
+            <div class="product-footer"><div class="product-price">₹90 <small>/ scoop</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /classic-scoops -->
+
+  </div><!-- /scoops tab -->
+
+
+  <!-- ══════════════════════════════════════
+       TAB 2 — PRE-PACKED CUPS & SUNDAES
+       Cup images:   images/cup-[slug].jpg
+       Sundae images: images/sundae-[slug].jpg
+  ══════════════════════════════════════ -->
+  <div class="tab-panel" id="prepacked">
+
+    <div class="panel-header fade-in">
+      <h2>Pre-Packed <span>Cups &amp; Sundaes</span></h2>
+      <p>Perfectly portioned and sealed fresh — ideal for take-home, gifting, or stocking up.</p>
+    </div>
+
+    <!-- 100 ml CUPS -->
+    <div class="menu-block">
+      <div class="menu-block-header">
+        <span class="menu-block-title">100 ml Premium Cups</span>
+        <span class="menu-block-meta">Take-Home</span>
+      </div>
+      <div class="products-grid">
+
+        <!-- IMAGE FILE: images/cup-classic-vanilla.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/cup-classic-vanilla.jpg" alt="Classic Vanilla Cup" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold"><span class="ph-initial">C</span><span class="ph-label">Classic Vanilla</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Classic Vanilla</div>
+            <div class="product-desc">The timeless original — pure, creamy, and always perfect.</div>
+            <div class="product-footer"><div class="product-price">100 ml</div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/cup-very-berry-strawberry.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/cup-very-berry-strawberry.jpg" alt="Very Berry Strawberry Cup" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink"><span class="ph-initial">V</span><span class="ph-label">Very Berry Strawberry</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Very Berry Strawberry</div>
+            <div class="product-desc">Bursting with real strawberry chunks in every single spoonful.</div>
+            <div class="product-footer"><div class="product-price">100 ml</div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/cup-cotton-candy.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/cup-cotton-candy.jpg" alt="Cotton Candy Cup" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink"><span class="ph-initial">C</span><span class="ph-label">Cotton Candy</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Cotton Candy</div>
+            <div class="product-desc">A fluffy pink cloud of spun sugar sweetness in a handy cup.</div>
+            <div class="product-footer"><div class="product-price">100 ml</div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/cup-mississippi-mud.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/cup-mississippi-mud.jpg" alt="Mississippi Mud Cup" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown"><span class="ph-initial">M</span><span class="ph-label">Mississippi Mud</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Mississippi Mud</div>
+            <div class="product-desc">Rich chocolate fudge with biscuit crunch — the crowd favourite.</div>
+            <div class="product-footer"><div class="product-price">100 ml</div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/cup-dutch-chocolate.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/cup-dutch-chocolate.jpg" alt="Dutch Chocolate Cup" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown"><span class="ph-initial">D</span><span class="ph-label">Dutch Chocolate</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Dutch Chocolate</div>
+            <div class="product-desc">Classic Dutch-process cocoa — smooth, deep, and clean.</div>
+            <div class="product-footer"><div class="product-price">100 ml</div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/cup-honey-nut-crunch.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/cup-honey-nut-crunch.jpg" alt="Honey Nut Crunch Cup" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold"><span class="ph-initial">H</span><span class="ph-label">Honey Nut Crunch</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Honey Nut Crunch</div>
+            <div class="product-desc">Wildflower honey cream with toasted nut clusters throughout.</div>
+            <div class="product-footer"><div class="product-price">100 ml</div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/cup-alphonso-mango.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/cup-alphonso-mango.jpg" alt="Alphonso Mango Cup" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-orange"><span class="ph-initial">A</span><span class="ph-label">Alphonso Mango</span></div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Alphonso Mango</div>
+            <div class="product-desc">Pulpy Ratnagiri Alphonso mango — intensely fruity and fragrant.</div>
+            <div class="product-footer"><div class="product-price">100 ml</div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 165 ml SUNDAES — image cards -->
+    <div class="menu-block">
+      <div class="menu-block-header">
+        <span class="menu-block-title">165 ml Sundaes</span>
+        <span class="menu-block-meta">Indulgent</span>
+      </div>
+      <div class="products-grid">
+
+        <!-- IMAGE FILE: images/sundae-brownie.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/sundae-brownie.jpg" alt="Brownie Sundae" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">B</span>
+              <span class="ph-label">Brownie Sundae</span>
+            </div>
+            <span class="product-badge fav">Bestseller</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Brownie Sundae</div>
+            <div class="product-desc">Warm chocolate brownie base crowned with premium scoops.</div>
+            <div class="product-footer">
+              <div class="product-price">165 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/sundae-gold-medal-ribbon.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/sundae-gold-medal-ribbon.jpg" alt="Gold Medal Ribbon Sundae" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">G</span>
+              <span class="ph-label">Gold Medal Ribbon</span>
+            </div>
+            <span class="product-badge award">Award</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Gold Medal Ribbon</div>
+            <div class="product-desc">Award-winning vanilla ribboned with golden caramel fudge.</div>
+            <div class="product-footer">
+              <div class="product-price">165 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/sundae-crunchy-butterscotch.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/sundae-crunchy-butterscotch.jpg" alt="Crunchy Butterscotch Sundae" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">C</span>
+              <span class="ph-label">Crunchy Butterscotch</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Crunchy Butterscotch</div>
+            <div class="product-desc">Smooth butterscotch ice cream loaded with toffee crunch bits.</div>
+            <div class="product-footer">
+              <div class="product-price">165 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/sundae-fruit-overload.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/sundae-fruit-overload.jpg" alt="Fruit Overload Sundae" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink">
+              <span class="ph-initial">F</span>
+              <span class="ph-label">Fruit Overload</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Fruit Overload</div>
+            <div class="product-desc">Vanilla cream loaded with a tropical candied fruit medley.</div>
+            <div class="product-footer">
+              <div class="product-price">165 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/sundae-mississippi-mud.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/sundae-mississippi-mud.jpg" alt="Mississippi Mud Sundae" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">M</span>
+              <span class="ph-label">Mississippi Mud</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Mississippi Mud</div>
+            <div class="product-desc">Deep chocolate fudge with biscuit crunch — signature favourite.</div>
+            <div class="product-footer">
+              <div class="product-price">165 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /165ml sundaes -->
+
+  </div><!-- /prepacked tab -->
+
+
+  <!-- ══════════════════════════════════════
+       TAB 3 — ON-THE-GO SNACKS & PACKS
+       Stick images: images/stick-[slug].jpg
+       Rock images:  images/rock-[slug].jpg
+  ══════════════════════════════════════ -->
+  <div class="tab-panel" id="onthego">
+
+    <div class="panel-header fade-in">
+      <h2>On-The-Go <span>Snacks &amp; Packs</span></h2>
+      <p>Grab-and-go novelties — sticks, cones, bite-sized rocks, doublet bars, roll cake slices, and funwiches.</p>
+    </div>
+
+<!-- ICE CREAM CONES -->
+<div class="menu-block">
+  <div class="menu-block-header">
+    <span class="menu-block-title">Ice Cream Cones</span>
+    <span class="menu-block-meta">110 ml</span>
+  </div>
+  <div class="products-grid">
+
+    <!-- IMAGE FILE: images/cone-cotton-candy.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cone-cotton-candy.jpg" alt="Cotton Candy Cone" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-pink">
+          <span class="ph-initial">C</span>
+          <span class="ph-label">Cotton Candy</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Cotton Candy</div>
+        <div class="product-desc">Fluffy pink cloud in a crispy waffle cone.</div>
+        <div class="product-footer">
+          <div class="product-price">110 ml</div>
+          <button class="product-order-btn">Order</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/cone-pistachio-cream.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cone-pistachio-cream.jpg" alt="Pistachio & Cream Cone" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-green">
+          <span class="ph-initial">P</span>
+          <span class="ph-label">Pistachio &amp; Cream</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Pistachio &amp; Cream</div>
+        <div class="product-desc">Premium roasted pistachios in a silky cream base, in a crispy waffle cone.</div>
+        <div class="product-footer">
+          <div class="product-price">110 ml</div>
+          <button class="product-order-btn">Order</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/cone-hazelnut.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cone-hazelnut.jpg" alt="Hazelnut Cone" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-gold">
+          <span class="ph-initial">H</span>
+          <span class="ph-label">Hazelnut</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Hazelnut</div>
+        <div class="product-desc">Smooth hazelnut cream in a crispy waffle cone.</div>
+        <div class="product-footer">
+          <div class="product-price">110 ml</div>
+          <button class="product-order-btn">Order</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/cone-cookies-n-cream.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cone-cookies-n-cream.jpg" alt="Cookies 'N Cream Cone" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-brown">
+          <span class="ph-initial">C</span>
+          <span class="ph-label">Cookies 'N Cream</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Cookies 'N Cream</div>
+        <div class="product-desc">Vanilla ice cream packed with chocolate cookie crumble, in a crispy waffle cone.</div>
+        <div class="product-footer">
+          <div class="product-price">110 ml</div>
+          <button class="product-order-btn">Order</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/cone-bavarian-chocolate.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cone-bavarian-chocolate.jpg" alt="Bavarian Chocolate Cone" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-brown">
+          <span class="ph-initial">B</span>
+          <span class="ph-label">Bavarian Chocolate</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Bavarian Chocolate</div>
+        <div class="product-desc">Refined old-world chocolate with warm hazelnut undertones, in a crispy waffle cone.</div>
+        <div class="product-footer">
+          <div class="product-price">110 ml</div>
+          <button class="product-order-btn">Order</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/cone-top-notch-butterscotch.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cone-top-notch-butterscotch.jpg" alt="Top Notch Butterscotch Cone" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-gold">
+          <span class="ph-initial">T</span>
+          <span class="ph-label">Top Notch Butterscotch</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Top Notch Butterscotch</div>
+        <div class="product-desc">Deep, golden butterscotch in a crispy waffle cone.</div>
+        <div class="product-footer">
+          <div class="product-price">110 ml</div>
+          <button class="product-order-btn">Order</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+       <!-- ICE CREAM STICKS -->
+    <div class="menu-block">
+      <div class="menu-block-header">
+        <span class="menu-block-title">Premium Ice Cream Sticks</span>
+        <span class="menu-block-meta">65 ml / 75 ml</span>
+      </div>
+      <div class="products-grid">
+
+        <!-- IMAGE FILE: images/stick-mississippi-mud.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/stick-mississippi-mud.jpg" alt="Mississippi Mud Stick" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">M</span>
+              <span class="ph-label">Mississippi Mud</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Mississippi Mud</div>
+            <div class="product-desc">Chocolate fudge stick with a biscuit crunch coating.</div>
+            <div class="product-footer">
+              <div class="product-price">65 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/stick-hazelnut.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/stick-hazelnut.jpg" alt="Hazelnut Stick" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">H</span>
+              <span class="ph-label">Hazelnut</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Hazelnut</div>
+            <div class="product-desc">Smooth hazelnut cream enrobed in a glossy chocolate shell.</div>
+            <div class="product-footer">
+              <div class="product-price">75 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+             <!-- IMAGE FILE: images/stick-cotton-candy.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/stick-cotton-candy.jpg" alt="Cotton Candy Stick" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink">
+              <span class="ph-initial">C</span>
+              <span class="ph-label">Cotton Candy</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Cotton Candy</div>
+            <div class="product-desc">Fluffy pink cloud flavour on a handy grab-and-go stick.</div>
+            <div class="product-footer">
+              <div class="product-price">65 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/stick-mango-mania.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/stick-mango-mania.jpg" alt="Mango Mania Stick" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-orange">
+              <span class="ph-initial">M</span>
+              <span class="ph-label">Mango Mania</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Mango Mania</div>
+            <div class="product-desc">A full-on mango hit — juicy, tropical, and perfectly sweet.</div>
+            <div class="product-footer">
+              <div class="product-price">65 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/stick-vanilla-chocolate.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/stick-vanilla-chocolate.jpg" alt="Vanilla 'N Chocolate Stick" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">V</span>
+              <span class="ph-label">Vanilla 'N Chocolate</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Vanilla 'N Chocolate</div>
+            <div class="product-desc">The timeless duo — creamy vanilla wrapped in a chocolate coat.</div>
+            <div class="product-footer">
+              <div class="product-price">65 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/stick-almond-caramel.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/stick-almond-caramel.jpg" alt="Almond 'N Caramel Stick" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">A</span>
+              <span class="ph-label">Almond 'N Caramel</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Almond 'N Caramel</div>
+            <div class="product-desc">Crunchy roasted almonds folded into rich caramel ice cream.</div>
+            <div class="product-footer">
+              <div class="product-price">75 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /sticks -->
+
+    <!-- ICE CREAM ROCKS -->
+    <div class="menu-block">
+      <div class="menu-block-header">
+        <span class="menu-block-title">Ice Cream Rocks</span>
+        <span class="menu-block-meta">Bite-Sized · Multi-Pack</span>
+      </div>
+      <div class="products-grid">
+
+        <!-- IMAGE FILE: images/rock-cotton-candy.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/rock-cotton-candy.jpg" alt="Cotton Candy Rocks" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink">
+              <span class="ph-initial">C</span>
+              <span class="ph-label">Cotton Candy</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Cotton Candy</div>
+            <div class="product-desc">Fluffy pink cloud flavour in perfectly poppable bite-sized pieces.</div>
+            <div class="product-footer"><div class="product-price"><small>60 / 192 / 1.14 L</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/rock-mississippi-mud.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/rock-mississippi-mud.jpg" alt="Mississippi Mud Rocks" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">M</span>
+              <span class="ph-label">Mississippi Mud</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Mississippi Mud</div>
+            <div class="product-desc">Rich chocolate fudge and biscuit crunch in one addictive bite.</div>
+            <div class="product-footer"><div class="product-price"><small>60 / 192 / 1.14 L</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/rock-hazelnut.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/rock-hazelnut.jpg" alt="Hazelnut Rocks" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">H</span>
+              <span class="ph-label">Hazelnut</span>
+            </div>
+            <span class="product-badge award">Premium</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Hazelnut</div>
+            <div class="product-desc">Silky hazelnut praline coated in a glossy dark chocolate shell.</div>
+            <div class="product-footer"><div class="product-price"><small>Multi-Pack</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/rock-caramel-biscuit.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/rock-caramel-biscuit.jpg" alt="Caramel Biscuit Rocks" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">C</span>
+              <span class="ph-label">Caramel Biscuit</span>
+            </div>
+            <span class="product-badge award">Premium</span>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Caramel Biscuit</div>
+            <div class="product-desc">Spiced caramel biscuit ice cream packed into golden bite-sized rocks.</div>
+            <div class="product-footer"><div class="product-price"><small>Multi-Pack</small></div><button class="product-order-btn">Order</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DOUBLET BAR -->
+    <div class="menu-block">
+      <div class="menu-block-header">
+        <span class="menu-block-title">Doublet Bar</span>
+        <span class="menu-block-meta">Stickless · 65 ml</span>
+      </div>
+      <div class="products-grid" style="max-width:520px;">
+
+        <!-- IMAGE FILE: images/doublet-choco-fudge.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/doublet-choco-fudge.jpg" alt="Choco Fudge Doublet" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">C</span>
+              <span class="ph-label">Choco Fudge</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Choco Fudge</div>
+            <div class="product-desc">Dense chocolate fudge bar — no stick, all flavour.</div>
+            <div class="product-footer">
+              <div class="product-price">65 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/doublet-raspberry-vanilla.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/doublet-raspberry-vanilla.jpg" alt="Raspberry Vanilla Doublet" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink">
+              <span class="ph-initial">R</span>
+              <span class="ph-label">Raspberry Vanilla</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Raspberry Vanilla</div>
+            <div class="product-desc">Tangy raspberry meets sweet vanilla in one neat little bar.</div>
+            <div class="product-footer">
+              <div class="product-price">65 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /doublet -->
+
+    <!-- ROLL CAKE SLICES -->
+    <div class="menu-block">
+      <div class="menu-block-header">
+        <span class="menu-block-title">Roll Cake Slices</span>
+        <span class="menu-block-meta">70 gms</span>
+      </div>
+      <div class="products-grid" style="max-width:520px;">
+
+        <!-- IMAGE FILE: images/rollslice-classic-fudge.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/rollslice-classic-fudge.jpg" alt="Classic Fudge Roll Cake Slice" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">C</span>
+              <span class="ph-label">Classic Fudge</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Classic Fudge</div>
+            <div class="product-desc">A single indulgent slice of the beloved Classic Fudge roll cake.</div>
+            <div class="product-footer">
+              <div class="product-price">70 gms</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/rollslice-red-velvet.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/rollslice-red-velvet.jpg" alt="Red Velvet Roll Cake Slice" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-red">
+              <span class="ph-initial">R</span>
+              <span class="ph-label">Red Velvet</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Red Velvet</div>
+            <div class="product-desc">Velvety red cake rolled with luscious cream cheese filling.</div>
+            <div class="product-footer">
+              <div class="product-price">70 gms</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /roll slices -->
+
+    <!-- FUNWICH -->
+    <div class="menu-block">
+      <div class="menu-block-header">
+        <span class="menu-block-title">Funwich</span>
+        <span class="menu-block-meta">Ice Cream Sandwich · 90 ml</span>
+      </div>
+      <div class="products-grid" style="max-width:520px;">
+
+        <!-- IMAGE FILE: images/funwich-choco-vanilla.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/funwich-choco-vanilla.jpg" alt="Choco Vanilla Funwich" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">C</span>
+              <span class="ph-label">Choco Vanilla</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Choco Vanilla</div>
+            <div class="product-desc">Vanilla ice cream sandwiched between two soft chocolate wafers.</div>
+            <div class="product-footer">
+              <div class="product-price">90 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/funwich-butterscotch-caramel.jpg -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/funwich-butterscotch-caramel.jpg" alt="Butterscotch & Caramel Funwich" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">B</span>
+              <span class="ph-label">Butterscotch &amp; Caramel</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Butterscotch &amp; Caramel</div>
+            <div class="product-desc">Buttery caramel ice cream nestled in a golden butterscotch wafer.</div>
+            <div class="product-footer">
+              <div class="product-price">90 ml</div>
+              <button class="product-order-btn">Order</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /funwich -->
+
+  </div><!-- /onthego tab -->
+
+
+  <!-- ══════════════════════════════════════
+       TAB 4 — ICE CREAM CAKES
+       Roll Cake images:         images/rollcake-[slug].jpg
+       Celebration Cake images:  images/cake-[slug].jpg
+  ══════════════════════════════════════ -->
+  <div class="tab-panel" id="cakes">
+
+    <div class="panel-header fade-in">
+      <h2>Gourmet <span>Ice Cream Cakes</span></h2>
+      <p>Multi-layered showstoppers crafted to make celebrations legendary. Order at least 48 hours in advance.</p>
+    </div>
+<!-- ROLL CAKES -->
+<div class="menu-block">
+  <div class="menu-block-header">
+    <span class="menu-block-title">Roll Cakes</span>
+    <span class="menu-block-meta">900 g · Serves 10</span>
+  </div>
+  <div class="cake-grid">
+
+    <!-- IMAGE FILE: images/rollcake-bavarian-knight.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/rollcake-bavarian-knight.jpg" alt="Bavarian Knight Roll Cake" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-brown">
+          <span class="ph-initial">B</span>
+          <span class="ph-label">Bavarian Knight</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Bavarian Knight</div>
+        <div class="product-desc">Old-world chocolate roll cake with hazelnut undertones.</div>
+        <div class="product-footer"><div class="product-price">900 g</div><button class="cake-order-btn">Enquire</button></div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/rollcake-red-velvet.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/rollcake-red-velvet.jpg" alt="Red Velvet Roll Cake" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-red">
+          <span class="ph-initial">R</span>
+          <span class="ph-label">Red Velvet</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Red Velvet</div>
+        <div class="product-desc">Velvety red cake rolled with cream cheese filling.</div>
+        <div class="product-footer"><div class="product-price">900 g</div><button class="cake-order-btn">Enquire</button></div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/rollcake-classic-fudge.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/rollcake-classic-fudge.jpg" alt="Classic Fudge Roll Cake" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-brown">
+          <span class="ph-initial">C</span>
+          <span class="ph-label">Classic Fudge</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Classic Fudge</div>
+        <div class="product-desc">Rich chocolate fudge roll cake — a timeless favourite.</div>
+        <div class="product-footer"><div class="product-price">900 g</div><button class="cake-order-btn">Enquire</button></div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/cake-mississippi-mud.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cake-mississippi-mud.jpg" alt="Mississippi Mud Roll Cake" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-brown">
+          <span class="ph-initial">M</span>
+          <span class="ph-label">Mississippi Mud</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Mississippi Mud</div>
+        <div class="product-desc">Dense chocolate fudge cake with crunchy biscuit layers.</div>
+        <div class="product-footer"><div class="product-price">900 g</div><button class="cake-order-btn">Enquire</button></div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/cake-lotus-biscoff.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cake-lotus-biscoff.jpg" alt="Lotus Biscoff Roll Cake" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-orange">
+          <span class="ph-initial">L</span>
+          <span class="ph-label">Lotus Biscoff®</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Lotus Biscoff®</div>
+        <div class="product-desc">Caramelised biscuit cream layered through soft sponge.</div>
+        <div class="product-footer"><div class="product-price">900 g</div><button class="cake-order-btn">Enquire</button></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CELEBRATION CAKES -->
+<div class="menu-block">
+  <div class="menu-block-header">
+    <span class="menu-block-title">Celebration Cakes</span>
+    <span class="menu-block-meta">500 g · Serves 6–8</span>
+  </div>
+  <div class="cake-grid">
+
+    <!-- IMAGE FILE: images/cake-black-forest.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cake-black-forest.jpg" alt="Black Forest Cake" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-red">
+          <span class="ph-initial">B</span>
+          <span class="ph-label">Black Forest</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Black Forest</div>
+        <div class="product-desc">Chocolate sponge, cherries, and whipped cream — a classic.</div>
+        <div class="product-footer"><div class="product-price">500 g</div><button class="cake-order-btn">Enquire</button></div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/cake-chocolate-truffle.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cake-chocolate-truffle.jpg" alt="Chocolate Truffle Cake" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-brown">
+          <span class="ph-initial">C</span>
+          <span class="ph-label">Chocolate Truffle</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Chocolate Truffle</div>
+        <div class="product-desc">Decadent layers of chocolate ganache and sponge.</div>
+        <div class="product-footer"><div class="product-price">500 g</div><button class="cake-order-btn">Enquire</button></div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/cake-pineapple.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cake-pineapple.jpg" alt="Pineapple Cake" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-orange">
+          <span class="ph-initial">P</span>
+          <span class="ph-label">Pineapple</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Pineapple</div>
+        <div class="product-desc">Light vanilla sponge layered with fresh pineapple cream.</div>
+        <div class="product-footer"><div class="product-price">500 g</div><button class="cake-order-btn">Enquire</button></div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/cake-cotton-candy.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cake-cotton-candy.jpg" alt="Cotton Candy Cake" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-pink">
+          <span class="ph-initial">C</span>
+          <span class="ph-label">Cotton Candy</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Cotton Candy</div>
+        <div class="product-desc">Playful pastel sponge with a cotton candy cream filling.</div>
+        <div class="product-footer"><div class="product-price">500 g</div><button class="cake-order-btn">Enquire</button></div>
+      </div>
+    </div>
+
+    <!-- IMAGE FILE: images/cake-red-velvet-fantasy.jpg -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="images/cake-red-velvet-fantasy.jpg" alt="Red Velvet Fantasy Cake" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="product-img-placeholder ph-red">
+          <span class="ph-initial">R</span>
+          <span class="ph-label">Red Velvet Fantasy</span>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Red Velvet Fantasy</div>
+        <div class="product-desc">Velvety red layers swirled with cream cheese frosting.</div>
+        <div class="product-footer"><div class="product-price">500 g</div><button class="cake-order-btn">Enquire</button></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /cakes tab -->
+
+<!-- ══════════════════════════════════════
+       TAB 6 — SAUCES & TOPPINGS
+       Image filenames: images/topping-[slug].png
+  ══════════════════════════════════════ -->
+  <div class="tab-panel" id="toppings">
+
+    <div class="panel-header fade-in">
+      <h2>Sauces <span>&amp; Toppings</span></h2>
+      <p>The perfect accents to customise and crown your creation. Add to any scoop, sundae, or dessert.</p>
+    </div>
+
+    <div class="menu-block">
+      <div class="menu-block-header">
+        <span class="menu-block-title">Signature Sauces</span>
+        <span class="menu-block-meta">Served Hot</span>
+      </div>
+      <div class="products-grid">
+
+        <!-- IMAGE FILE: images/topping-hot-butterscotch.png -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/topping-hot-butterscotch.png" alt="Hot Butterscotch" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">H</span>
+              <span class="ph-label">Hot Butterscotch</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Hot Butterscotch</div>
+            <div class="product-desc">Warm, buttery butterscotch sauce — served hot.</div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/topping-hot-dipping-chocolate.png -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/topping-hot-dipping-chocolate.png" alt="Hot Dipping Chocolate" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">H</span>
+              <span class="ph-label">Hot Dipping Chocolate</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Hot Dipping Chocolate</div>
+            <div class="product-desc">Rich, glossy chocolate sauce — served hot.</div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/topping-hot-fudge.png -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/topping-hot-fudge.png" alt="Hot Fudge" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">H</span>
+              <span class="ph-label">Hot Fudge</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Hot Fudge</div>
+            <div class="product-desc">Thick, indulgent chocolate fudge sauce — served hot.</div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/topping-mango.png -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/topping-mango.png" alt="Mango Topping" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-orange">
+              <span class="ph-initial">M</span>
+              <span class="ph-label">Mango Topping</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Mango Topping</div>
+            <div class="product-desc">Bright, fruity mango sauce — a tropical finish.</div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/topping-strawberry.png -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/topping-strawberry.png" alt="Strawberry Topping" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-pink">
+              <span class="ph-initial">S</span>
+              <span class="ph-label">Strawberry Topping</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Strawberry Topping</div>
+            <div class="product-desc">Sweet-tart strawberry sauce made with real fruit.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="menu-block">
+      <div class="menu-block-header">
+        <span class="menu-block-title">Fun Toppings</span>
+        <span class="menu-block-meta">Add-On · Crunchy</span>
+      </div>
+      <div class="products-grid">
+
+        <!-- IMAGE FILE: images/topping-almonds.png -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/topping-almonds.png" alt="Almonds (Chopped)" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-gold">
+              <span class="ph-initial">A</span>
+              <span class="ph-label">Almonds (Chopped)</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Almonds (Chopped)</div>
+            <div class="product-desc">Crunchy chopped almonds — a nutty finishing touch.</div>
+          </div>
+        </div>
+
+        <!-- IMAGE FILE: images/topping-chocolate-chips.png -->
+        <div class="product-card fade-in">
+          <div class="product-img-wrap">
+            <img src="images/topping-chocolate-chips.png" alt="Chocolate Chips" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="product-img-placeholder ph-brown">
+              <span class="ph-initial">C</span>
+              <span class="ph-label">Chocolate Chips</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Chocolate Chips</div>
+            <div class="product-desc">Crunchy chocolate chips for extra texture.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /toppings tab -->
+
+</section><!-- /menu-section -->
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="nav-logo-text">VV2 Stone Cold<span>Ice Creams · Chennai</span></span>
+      <p>100% Vegetarian ice cream made with premium cow milk. Authorised partner of Baskin-Robbins and Mercely's Ice Cream.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 48 48" fill="currentColor"><use href="images/icons.svg#icon-instagram"/></svg></a>
+        <a href="#" class="social-btn" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 48 48" fill="currentColor"><use href="images/icons.svg#icon-facebook"/></svg></a>
+        <a href="https://wa.me/919884964132" class="social-btn" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 48 48" fill="currentColor"><use href="images/icons.svg#icon-whatsapp"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Menu</h4><ul><li><a href="products.html">Scoops</a></li><li><a href="products.html">Ice Cream Cakes</a></li><li><a href="products.html">On-The-Go Packs</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+919884964132">98849 64132</a></li><li><a href="tel:+919176248299">91762 48299</a></li><li><a href="contact.html">Kilpauk, Chennai</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 VV2 Stone Cold Ice Creams · All rights reserved.</p>
+    <p>Made with care in Chennai</p>
+  </div>
+</footer>
+
+<div class="whatsapp-float">
+  <span class="whatsapp-tooltip">Order on WhatsApp</span>
+  <button class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <svg class="icon icon-sm" viewBox="0 0 48 48"><use href="images/icons.svg#icon-whatsapp"/></svg>
+  </button>
+</div>
+
+<script src="js/premium-images.js"></script>
+<script src="js/main.js"></script>
+<script>
+  /* ── Tab switching ── */
+  const tabBtns   = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      tabBtns.forEach(b  => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const panel = document.getElementById(target);
+      if (!panel) return;
+      panel.classList.add('active');
+      /* re-trigger fade-in for newly visible items */
+      panel.querySelectorAll('.fade-in').forEach(el => {
+        el.classList.remove('visible');
+        requestAnimationFrame(() => setTimeout(() => el.classList.add('visible'), 40));
+      });
+    });
+  });
+
+  /* ── Sub-tab switching ── */
+  document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.subtab;
+      const parent = btn.closest('.tab-panel');
+      parent?.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+      parent?.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(target)?.classList.add('active');
+    });
+  });
+
+  /* ── Order / Enquire buttons → WhatsApp ── */
+  const PHONE = '919884964132';
+  document.querySelectorAll('.product-order-btn, .cake-order-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name =
+        btn.closest('.product-card')?.querySelector('.product-name')?.textContent ||
+        btn.closest('.cake-card')?.querySelector('.cake-name')?.textContent ||
+        'a product';
+      const msg = encodeURIComponent(`Hi VV2 Stone Cold! I'm interested in: ${name}`);
+      window.open(`https://wa.me/${PHONE}?text=${msg}`, '_blank');
+    });
+  });
+</script>
+</body>
+</html>
